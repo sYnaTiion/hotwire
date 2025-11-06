@@ -1,11 +1,7 @@
 export const GAME_CONFIG = {
-  // Zeit pro Runde in Sekunden //
   timePerRound: 45,
-  // Anzahl der Kabel (3-8) //
   numberOfCables: 10,
-  // Maximale Fehlversuche //
   maxFailedAttempts: 3,
-  // Maximale verlorene Runden bis Verloren //
   maxLostRounds: 3,
 
   cableColors: [
