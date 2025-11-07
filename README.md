@@ -1,6 +1,6 @@
 # Hotwire - Cable Connection Game
 
-Ein interaktives Drahtspiel, bei dem Spieler Kabel mit passenden Farben verbinden müssen, bevor die Zeit abläuft.
+Ein interaktives React-basiertes Drahtspiel, bei dem Spieler Kabel mit passenden Farben verbinden müssen, bevor die Zeit abläuft.
 
 ## Inhaltsverzeichnis
 
@@ -13,11 +13,11 @@ Ein interaktives Drahtspiel, bei dem Spieler Kabel mit passenden Farben verbinde
 - [Spielregeln](#spielregeln)
 - [Konfiguration](#konfiguration)
 - [Anpassung & Erweiterung](#anpassung--erweiterung)
-- [Rechtliches & Lizenz](#rechtliches--lizenz)
+- [Lizenz](#lizenz)
 
 ## Überblick
 
-Hotwire ist ein spannendes Reaktionsspiel, bei dem Spieler unter Zeitdruck Kabelverbindungen herstellen müssen. Das Spiel kombiniert visuell ansprechende SVG-Grafiken mit intuitiver Drag-and-Drop-Interaktion und progressiv steigendem Schwierigkeitsgrad.
+Hotwire ist ein spannendes Reaktionsspiel, entwickelt mit React und TypeScript, bei dem Spieler unter Zeitdruck Kabelverbindungen herstellen müssen. Das Spiel kombiniert visuell ansprechende SVG-Grafiken mit intuitiver Drag-and-Drop-Interaktion und bietet eine herausfordernde Spielerfahrung.
 
 ## Features
 
@@ -25,46 +25,63 @@ Hotwire ist ein spannendes Reaktionsspiel, bei dem Spieler unter Zeitdruck Kabel
 - **Zeitbasierte Runden**: 45 Sekunden pro Runde (konfigurierbar)
 - **Drag & Drop Interface**: Intuitive Maussteuerung für Kabelverbindungen
 - **Visuelles Feedback**: Animierte Erfolgs-/Fehlschlag-Indikatoren
-- **Progressiver Schwierigkeitsgrad**: Bis zu 10 verschiedene Kabelfarben
+- **10 verschiedene Kabelfarben**: Farbkodierte Verbindungselemente
 - **Fehlertoleranz**: Maximal 3 Fehlversuche pro Runde
 - **Multi-Round System**: Bis zu 3 verlorene Runden vor permanentem Game Over
+- **Responsive Design**: Optimiert für verschiedene Bildschirmgrößen
 
 ### Visuelle Effekte
 - **Animierte Kabelverbindungen**: Realistische Kurven mit dynamischen Kontrollpunkten
 - **Glow-Effekte**: Leuchtende Kabel und Anschlüsse
 - **Farbkodierung**: 10 unterschiedliche Kabelfarben für klare Unterscheidung
-- **Responsive Design**: Anpassung an verschiedene Bildschirmgrößen
 - **Flash-Feedback**: Visuelle Rückmeldung bei Fehlern und Erfolg
+- **Timer-Animation**: Visueller Countdown mit Farbwechseln
 
 ## Technologien
 
-- **Frontend**: React 18.3.1 mit TypeScript
-- **Build Tool**: Vite 7.0.6
-- **Icons**: Lucide React 0.344.0
-- **Styling**: CSS mit SVG-Grafiken
-- **Linting**: ESLint mit TypeScript-Support
-- **Entwicklungssprache**: TypeScript 5.5.3
+### Frontend Stack
+- **React 18.3.1**: Moderne UI-Bibliothek mit funktionalen Komponenten
+- **TypeScript 5.5.3**: Statische Typisierung für bessere Code-Qualität
+- **Vite 7.0.6**: Schnelles Build-Tool und Entwicklungsserver
+
+### Entwicklungstools
+- **ESLint 9.9.1**: Code-Qualität und Konsistenz
+- **TypeScript ESLint 8.3.0**: TypeScript-spezifische Linting-Regeln
+- **Vite Plugin React 4.3.1**: Hot Module Replacement für React
+
+### UI & Styling
+- **Lucide React 0.344.0**: Moderne Icon-Bibliothek
+- **CSS3**: Native Styling mit SVG-Grafiken
+- **Custom SVG**: Maßgeschneiderte Kabel-Visualisierung
 
 ## Projektstruktur
 
 ```
 hotwire/
-├── public/                 # Statische Assets
 ├── src/
 │   ├── components/
-│   │   └── CableGame.tsx  # Hauptspiel-Komponente
+│   │   └── CableGame.tsx      # Hauptspiel-Komponente (671 Zeilen)
 │   ├── config/
-│   │   └── gameConfig.ts  # Spielkonfiguration
-│   ├── App.tsx            # Root-Komponente
-│   ├── main.tsx           # Eintrittspunkt
-│   ├── index.css          # Globale Styles
-│   └── vite-env.d.ts      # Vite TypeScript Definitionen
-├── index.html             # HTML Template
-├── package.json           # Projekt-Dependencies
-├── vite.config.ts         # Vite-Konfiguration
-├── tsconfig.json          # TypeScript-Konfiguration
-└── README.md              # Projektdokumentation
+│   │   └── gameConfig.ts      # Spielkonfiguration & Konstanten
+│   ├── App.tsx                # Root-Komponente
+│   ├── main.tsx               # React-Eintrittspunkt
+│   ├── index.css              # Globale Styles & Animationen
+│   └── vite-env.d.ts          # Vite TypeScript Definitionen
+├── index.html                 # HTML Template
+├── package.json               # Dependencies & Scripts
+├── LICENSE                    # MIT Lizenz
+├── vite.config.ts             # Vite Build-Konfiguration
+├── tsconfig.json              # TypeScript-Konfiguration
+├── tsconfig.app.json          # App-spezifische TS-Config
+├── tsconfig.node.json         # Node-spezifische TS-Config
+└── README.md                  # Projektdokumentation
 ```
+
+### Wichtige Dateien
+
+- **`CableGame.tsx`**: Kern des Spiels mit kompletter Spiellogik
+- **`gameConfig.ts`**: Zentrale Konfiguration (Zeit, Farben, Limits)
+- **`vite.config.ts`**: Build-Konfiguration mit GitHub Pages Support
 
 ## Installation & Entwicklung
 
@@ -108,7 +125,13 @@ npm run build
 npm run preview
 ```
 
-Die gebauten Dateien befinden sich im `dist/` Ordner und können auf jedem statischen Webserver deployed werden.
+### GitHub Pages Deployment
+Das Projekt ist für GitHub Pages vorkonfiguriert:
+- Base URL ist auf `/hotwire/` gesetzt (siehe `vite.config.ts`)
+- Build-Artefakte werden im `dist/` Ordner erstellt
+- Kann direkt über GitHub Actions deployed werden
+
+Die gebauten Dateien können auf jedem statischen Webserver deployed werden.
 
 ## Spielregeln
 
@@ -133,40 +156,61 @@ Die Spieleinstellungen können in `src/config/gameConfig.ts` angepasst werden:
 
 ```typescript
 export const GAME_CONFIG = {
-  timePerRound: 45,       
-  numberOfCables: 10,      
-  maxFailedAttempts: 3,    
-  maxLostRounds: 3,       
+  timePerRound: 45,           
+  numberOfCables: 10,       
+  maxFailedAttempts: 3,     
+  maxLostRounds: 3,           
 
-  cableColors: [     
-    "#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6",
-    "#ec4899", "#06b6d4", "#84cc16", "#f97316", "#64748b"
+  cableColors: [           
+    "#ef4444",  // Rot
+    "#3b82f6",  // Blau  
+    "#10b981",  // Grün
+    "#f59e0b",  // Gelb
+    "#8b5cf6",  // Violett
+    "#ec4899",  // Pink
+    "#06b6d4",  // Cyan
+    "#84cc16",  // Lime
+    "#f97316",  // Orange
+    "#64748b"   // Grau
   ]
 };
 ```
 
+### Verfügbare Optionen
+- **timePerRound**: Zeit in Sekunden (Standard: 45)
+- **numberOfCables**: Anzahl der Kabel (max. 10 wegen Farbarray)
+- **maxFailedAttempts**: Fehlertoleranz pro Runde (Standard: 3)
+- **maxLostRounds**: Anzahl verlorener Runden bis Game Over (Standard: 3)
+- **cableColors**: Array mit Hex-Farbcodes für die Kabel
+
 ## Anpassung & Erweiterung
+
+### Code-Architektur
+Das Spiel ist modular aufgebaut und einfach erweiterbar:
+
+- **`CableGame.tsx`**: Hauptkomponente mit State-Management
+- **`gameConfig.ts`**: Zentrale Konfigurationsdatei
+- **React Hooks**: useState, useEffect, useCallback für State-Management
+- **TypeScript Interfaces**: Typisierte Datenstrukturen
 
 ### Neue Features hinzufügen
 - **Schwierigkeitslevel**: Erweitere `gameConfig.ts` um Level-basierte Einstellungen
-- **Sound-Effekte**: Integriere Audio-Feedback für Aktionen
-- **Scoring-System**: Implementiere Punkte basierend auf Geschwindigkeit und Genauigkeit
+- **Sound-Effekte**: Integriere Web Audio API für Feedback
+- **Scoring-System**: Implementiere Punkte basierend auf Zeit und Genauigkeit
 - **Power-Ups**: Füge spezielle Fähigkeiten hinzu (Zeitverlängerung, Farbhilfen)
+- **Bestenliste**: LocalStorage für persistente Highscores
 
-### Styling anpassen
-- **Themes**: Erweitere `index.css` um verschiedene Farbthemen
-- **Animationen**: Passe SVG-Animationen in `CableGame.tsx` an
-- **Responsive Breakpoints**: Optimiere für verschiedene Gerätegrößen
+### Styling & UI anpassen
+- **Themes**: Erweitere `index.css` um CSS Custom Properties
+- **Animationen**: Nutze CSS-Animationen und SVG-Transformationen
+- **Icons**: Erweitere mit weiteren Lucide React Icons
+- **Responsive Design**: Optimiere Breakpoints für Mobile/Tablet
 
-## Rechtliches & Lizenz
+## Lizenz
 
-### MIT License
+Dieses Projekt steht unter der MIT-Lizenz. Siehe [LICENSE](./LICENSE) für Details.
 
-Copyright (c) 2025 devsYn
+**MIT License** - Copyright (c) 2025 devsYn
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Freie Verwendung, Modifikation und Verteilung erlaubt. Keine Gewährleistung.
 
